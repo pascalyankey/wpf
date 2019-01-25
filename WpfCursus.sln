@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ButtonGebruik", "ButtonGebr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzaWindowOpdracht", "PizzaWindowOpdracht\PizzaWindowOpdracht.csproj", "{70F6C4EC-F751-4E41-B4F3-F9BB3861121F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HobbyLijst", "HobbyLijst\HobbyLijst.csproj", "{3BE1BE83-ABAC-433A-868B-319315A1F994}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelefoonWindowOpdracht", "TelefoonWindowOpdracht\TelefoonWindowOpdracht.csproj", "{015417D2-9B68-449F-9B94-2E0E8887503C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{70F6C4EC-F751-4E41-B4F3-F9BB3861121F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70F6C4EC-F751-4E41-B4F3-F9BB3861121F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70F6C4EC-F751-4E41-B4F3-F9BB3861121F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BE1BE83-ABAC-433A-868B-319315A1F994}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BE1BE83-ABAC-433A-868B-319315A1F994}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BE1BE83-ABAC-433A-868B-319315A1F994}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BE1BE83-ABAC-433A-868B-319315A1F994}.Release|Any CPU.Build.0 = Release|Any CPU
+		{015417D2-9B68-449F-9B94-2E0E8887503C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{015417D2-9B68-449F-9B94-2E0E8887503C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{015417D2-9B68-449F-9B94-2E0E8887503C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{015417D2-9B68-449F-9B94-2E0E8887503C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
