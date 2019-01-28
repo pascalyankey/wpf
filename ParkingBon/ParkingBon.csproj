@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{015417D2-9B68-449F-9B94-2E0E8887503C}</ProjectGuid>
+    <ProjectGuid>{3786F89A-A692-4B15-AF2D-3D5E2828EAAE}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>TelefoonWindowOpdracht</RootNamespace>
-    <AssemblyName>TelefoonWindowOpdracht</AssemblyName>
+    <RootNamespace>ParkingBon</RootNamespace>
+    <AssemblyName>ParkingBon</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -55,21 +55,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="TelefoonWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Persoon.cs" />
-    <Compile Include="TelefoonWindow.xaml.cs">
-      <DependentUpon>TelefoonWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Page Include="ParkingBonWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ParkingBonWindow.xaml.cs">
+      <DependentUpon>ParkingBonWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -96,19 +94,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\PHONE.wav" />
-    <Resource Include="Images\anne.jpg" />
-    <Resource Include="Images\bob.jpg" />
-    <Resource Include="Images\collega1.jpg" />
-    <Resource Include="Images\collega2.jpg" />
-    <Resource Include="Images\collega3.jpg" />
-    <Resource Include="Images\ed.jpg" />
-    <Resource Include="Images\grotezus.jpg" />
-    <Resource Include="Images\kleinezus.jpg" />
-    <Content Include="Images\PHONE.wav" />
-    <Resource Include="Images\tantenon.jpg" />
-    <Resource Include="Images\telefoon2.jpg" />
-    <Resource Include="Images\vader.jpg" />
+    <Resource Include="images\close.jpg" />
+    <Resource Include="images\new.jpg" />
+    <Resource Include="images\open.jpg" />
+    <Resource Include="images\parkingbon.jpg" />
+    <Resource Include="images\print.jpg" />
+    <Resource Include="images\save.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

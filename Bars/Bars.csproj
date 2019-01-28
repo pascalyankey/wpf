@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{015417D2-9B68-449F-9B94-2E0E8887503C}</ProjectGuid>
+    <ProjectGuid>{D9CE6C37-E931-4DFE-A7C0-0BDACCA7EDDD}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>TelefoonWindowOpdracht</RootNamespace>
-    <AssemblyName>TelefoonWindowOpdracht</AssemblyName>
+    <RootNamespace>Bars</RootNamespace>
+    <AssemblyName>Bars</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -55,17 +55,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="TelefoonWindow.xaml">
+    <Page Include="Afdrukvoorbeeld.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BarWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Afdrukvoorbeeld.xaml.cs">
+      <DependentUpon>Afdrukvoorbeeld.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Persoon.cs" />
-    <Compile Include="TelefoonWindow.xaml.cs">
-      <DependentUpon>TelefoonWindow.xaml</DependentUpon>
+    <Compile Include="BarWindow.xaml.cs">
+      <DependentUpon>BarWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -96,19 +102,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\PHONE.wav" />
-    <Resource Include="Images\anne.jpg" />
-    <Resource Include="Images\bob.jpg" />
-    <Resource Include="Images\collega1.jpg" />
-    <Resource Include="Images\collega2.jpg" />
-    <Resource Include="Images\collega3.jpg" />
-    <Resource Include="Images\ed.jpg" />
-    <Resource Include="Images\grotezus.jpg" />
-    <Resource Include="Images\kleinezus.jpg" />
-    <Content Include="Images\PHONE.wav" />
-    <Resource Include="Images\tantenon.jpg" />
-    <Resource Include="Images\telefoon2.jpg" />
-    <Resource Include="Images\vader.jpg" />
+    <Resource Include="Images\afsluiten.png" />
+    <Resource Include="Images\bold.png" />
+    <Resource Include="Images\copy.png" />
+    <Resource Include="Images\cut.png" />
+    <Resource Include="Images\italic.png" />
+    <Resource Include="Images\open.png" />
+    <Resource Include="Images\paste.png" />
+    <Resource Include="Images\preview.png" />
+    <Resource Include="Images\print.png" />
+    <Resource Include="Images\save.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

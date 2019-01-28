@@ -1,18 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Media;
 
 namespace TelefoonWindowOpdracht
 {
@@ -51,7 +43,7 @@ namespace TelefoonWindowOpdracht
         {
             ListBoxPersonen.Items.Clear();
 
-            foreach (Persoon persoon in personen)
+            foreach (var persoon in personen)
             {
                 if (persoon.Groep == ComboBoxGroep.SelectedItem.ToString() || ComboBoxGroep.SelectedIndex == 0)
                     ListBoxPersonen.Items.Add(persoon);
@@ -64,7 +56,17 @@ namespace TelefoonWindowOpdracht
         {
             if (ListBoxPersonen.SelectedItem == null)
             {
-                MessageBox.Show("Je moet eerst iemand selecteren", "Niemand gekozen", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Je moet eerst iemand selecteren", "Niemand gekozen", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else
+            {
+                var persoon = (Persoon)ListBoxPersonen.SelectedValue;
+
+                if (MessageBox.Show($"Wil je {persoon.Naam} bellen \nop het nummer: {persoon.Telefoonnr}?", "Telefoon", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.Yes)
+                {
+                    var speler = new SoundPlayer(TelefoonWindowOpdracht.Properties.Resources.PHONE);
+                    speler.Play();
+                }
             }
         }
     }
