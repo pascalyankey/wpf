@@ -79,7 +79,8 @@ namespace ParkingBon
             InlineUIContainer container = new InlineUIContainer(image);
 
             deRegel.Inlines.Add(container);
-            deRegel.Margin = new Thickness(96, 96, 96, 96);
+            deRegel.Margin = new Thickness(96, vertPositie, 96, 96);
+            vertPositie += 36;
 
             return deRegel;
         }
