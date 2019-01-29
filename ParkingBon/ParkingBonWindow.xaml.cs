@@ -1,6 +1,11 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
+using System.IO;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace ParkingBon
 {
@@ -9,12 +14,15 @@ namespace ParkingBon
     /// </summary>
     public partial class ParkingBonWindow : Window
     {
+        private double breedte = 640 / 2.54 * 96;
+        private double hoogte = 320 / 2.54 * 96;
+        private double vertPositie;
         public static RoutedCommand mijnRouteCtrlF2 = new RoutedCommand();
         public ParkingBonWindow()
         {
             InitializeComponent();
 
-            CommandBinding mijnCtrlF2 = new CommandBinding(mijnRouteCtrlF2, CtrlF2Executed);
+            CommandBinding mijnCtrlF2 = new CommandBinding(mijnRouteCtrlF2, PrintExecuted);
             this.CommandBindings.Add(mijnCtrlF2);
             KeyGesture toetsCtrlF2 = new KeyGesture(Key.F2, ModifierKeys.Control);
             KeyBinding mijnKeyCtrlF2 = new KeyBinding(mijnRouteCtrlF2, toetsCtrlF2);
@@ -23,29 +31,138 @@ namespace ParkingBon
             Nieuw();
         }
 
+        private FixedDocument StelAfdrukSamen()
+        {
+            FixedDocument document = new FixedDocument();
+            document.DocumentPaginator.PageSize = new Size(breedte, hoogte);
+
+            PageContent inhoud = new PageContent();
+            document.Pages.Add(inhoud);
+
+            FixedPage page = new FixedPage();
+            inhoud.Child = page;
+
+            page.Width = breedte;
+            page.Height = hoogte;
+            vertPositie = 96;
+
+            page.Children.Add(Regel(new BitmapImage(new Uri(@"images\parkingbon.jpg", UriKind.Relative))));
+            page.Children.Add(Regel("datum : " + DatumBon.SelectedDate.ToString()));
+            page.Children.Add(Regel("starttijd : " + AankomstLabelTijd.Content.ToString()));
+            page.Children.Add(Regel("eindtijd : " + VertrekLabelTijd.Content.ToString()));
+            page.Children.Add(Regel("bedrag betaald : " + TeBetalenLabel.Content.ToString()));
+
+            return document;
+        }
+
+        private TextBlock Regel(string tekst)
+        {
+            var deRegel = new TextBlock();
+            
+            deRegel.Text = tekst;
+            deRegel.Margin = new Thickness(300, vertPositie, 96, 96);
+            vertPositie += 36;
+
+            return deRegel;
+        }
+
+        private TextBlock Regel(BitmapImage afbeelding)
+        {
+            var deRegel = new TextBlock();
+            var image = new Image();
+
+            image.Source = afbeelding;
+            image.Width = 120;
+            image.Height = 117;
+            image.Visibility = Visibility.Visible;
+
+            InlineUIContainer container = new InlineUIContainer(image);
+
+            deRegel.Inlines.Add(container);
+            deRegel.Margin = new Thickness(96, 96, 96, 96);
+
+            return deRegel;
+        }
+
         private void NewExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-
+            Nieuw();
         }
 
         private void OpenExecuted(object sender, ExecutedRoutedEventArgs e)
         {
+            try
+            {
+                OpenFileDialog dlg = new OpenFileDialog();
+                dlg.FileName = "Document";
+                dlg.DefaultExt = ".bon";
+                dlg.Filter = "Bon documents |*.bon";
 
+                if (dlg.ShowDialog() == true)
+                {
+                    using (StreamReader bestand = new StreamReader(dlg.FileName))
+                    {
+                        DatumBon.SelectedDate = Convert.ToDateTime(bestand.ReadLine());
+                        AankomstLabelTijd.Content = bestand.ReadLine();
+                        TeBetalenLabel.Content = bestand.ReadLine();
+                        VertrekLabelTijd.Content = bestand.ReadLine();
+                    }
+
+                    StatusBon.Content = dlg.FileName;
+                    AfdrukItem.IsEnabled = true;
+                    AfdrukButton.IsEnabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("openen mislukt : " + ex.Message);
+            }
         }
 
         private void SaveExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            
-        }
+            try
+            {
+                SaveFileDialog dlg = new SaveFileDialog();
 
-        private void CtrlF2Executed(object sender, ExecutedRoutedEventArgs e)
-        {
+                dlg.FileName = DatumBon.SelectedDate.Value.Date.ToString("dd-MM-yyyy") + "om" + AankomstLabelTijd.Content.ToString().Replace(":", "-") + ".bon";
+                dlg.DefaultExt = ".bon";
+                dlg.Filter = "Bon documents |*.bon";
 
+                if (dlg.ShowDialog() == true)
+                {
+                    using (StreamWriter bestand = new StreamWriter(dlg.FileName))
+                    {
+                        bestand.WriteLine(DatumBon.SelectedDate.Value.Date.ToString("dd/MM/yyyy"));
+                        bestand.WriteLine(AankomstLabelTijd.Content);
+                        bestand.WriteLine(TeBetalenLabel.Content);
+                        bestand.WriteLine(VertrekLabelTijd.Content);
+                    }
+
+                    StatusBon.Content = dlg.FileName.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("opslaan mislukt: " + ex.Message);
+            }
         }
 
         private void PreviewExecuted(object sender, ExecutedRoutedEventArgs e)
         {
+            Afdrukvoorbeeld preview = new Afdrukvoorbeeld();
+            preview.Owner = this;
+            preview.AfdrukDocument = StelAfdrukSamen();
+            preview.ShowDialog();
+        }
 
+        private void PrintExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            PrintDialog afdrukken = new PrintDialog();
+            if (afdrukken.ShowDialog() == true)
+            {
+                afdrukken.PrintDocument(StelAfdrukSamen().DocumentPaginator, "Parkingbon");
+            }
         }
 
         private void CloseExecuted(object sender, ExecutedRoutedEventArgs e)
@@ -58,21 +175,43 @@ namespace ParkingBon
             DatumBon.SelectedDate = DateTime.Now;
             AankomstLabelTijd.Content = DateTime.Now.ToLongTimeString();
             TeBetalenLabel.Content = "0 €";
-            VertrekLabelTijd.Content = AankomstLabelTijd.Content;        
+            VertrekLabelTijd.Content = AankomstLabelTijd.Content;
+            StatusBon.Content = "nieuwe bon";
+            OpslaanItem.IsEnabled = false;
+            OpslaanButton.IsEnabled = false;
+            AfdrukItem.IsEnabled = false;
+            AfdrukButton.IsEnabled = false;
         }
 
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (MessageBox.Show("Programma afsluiten ?", "Afsluiten", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.No)
+            if (MessageBox.Show("Programma afsluiten?", "Afsluiten", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.No)
                 e.Cancel = true;
         }
 
         private void Minder_Click(object sender, RoutedEventArgs e)
         {
             int bedrag = Convert.ToInt32(TeBetalenLabel.Content.ToString().Replace(" €", ""));
+
             if (bedrag > 0)
                 bedrag -= 1;
+
+            if (bedrag > 0)
+            {
+                OpslaanItem.IsEnabled = true;
+                OpslaanButton.IsEnabled = true;
+                AfdrukItem.IsEnabled = true;
+                AfdrukButton.IsEnabled = true;
+            }
+            else
+            {
+                OpslaanItem.IsEnabled = false;
+                OpslaanButton.IsEnabled = false;
+                AfdrukItem.IsEnabled = false;
+                AfdrukButton.IsEnabled = false;
+            }
+
             TeBetalenLabel.Content = bedrag.ToString() + " €";
             VertrekLabelTijd.Content = Convert.ToDateTime(AankomstLabelTijd.Content).AddHours(0.5 * bedrag).ToLongTimeString();
         }
@@ -81,8 +220,25 @@ namespace ParkingBon
         {
             int bedrag = Convert.ToInt32(TeBetalenLabel.Content.ToString().Replace(" €", ""));
             DateTime vertrekuur = Convert.ToDateTime(AankomstLabelTijd.Content).AddHours(0.5 * bedrag);
+
             if (vertrekuur.Hour < 22)
                 bedrag += 1;
+
+            if (bedrag > 0)
+            {
+                OpslaanItem.IsEnabled = true;
+                OpslaanButton.IsEnabled = true;
+                AfdrukItem.IsEnabled = true;
+                AfdrukButton.IsEnabled = true;
+            }
+            else
+            {
+                OpslaanItem.IsEnabled = false;
+                OpslaanButton.IsEnabled = false;
+                AfdrukItem.IsEnabled = false;
+                AfdrukButton.IsEnabled = false;
+            }
+
             TeBetalenLabel.Content = bedrag.ToString() + " €";
             VertrekLabelTijd.Content = Convert.ToDateTime(AankomstLabelTijd.Content).AddHours(0.5 * bedrag).ToLongTimeString();
         }
