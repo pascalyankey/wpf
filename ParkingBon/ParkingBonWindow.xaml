@@ -76,7 +76,7 @@
             </Grid.ColumnDefinitions>
             <Image Name="logoImage" Source="images\parkingbon.jpg" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Margin="10,0"></Image>
            <TextBlock Text="1€ per half uur tot 22.00u" FontWeight="Bold"></TextBlock>
-            <DatePicker Name="DatumBon" Grid.Column="1" ToolTip="datum selectere" SelectedDateFormat="Long" VerticalAlignment="Center" Margin="0,38,50,38"></DatePicker>
+            <DatePicker Name="DatumBon" Grid.Column="1" ToolTip="datum selecteren" SelectedDateFormat="Long" VerticalAlignment="Center" Margin="0,38,50,38"></DatePicker>
             <Label Name="AankomstLabel" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Content="Aankomsttijd:"></Label>
             <Label Name="AankomstLabelTijd" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Width="200" HorizontalContentAlignment="Center"></Label>
             <Label Name="BedragLabel" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Content="Bedrag:"></Label>

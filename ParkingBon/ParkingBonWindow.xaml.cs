@@ -14,8 +14,8 @@ namespace ParkingBon
     /// </summary>
     public partial class ParkingBonWindow : Window
     {
-        private double breedte = 640 / 2.54 * 96;
-        private double hoogte = 320 / 2.54 * 96;
+        private double breedte = 16.93 / 2.54 * 96;
+        private double hoogte = 8.46 / 2.54 * 96;
         private double vertPositie;
         public static RoutedCommand mijnRouteCtrlF2 = new RoutedCommand();
         public ParkingBonWindow()
@@ -46,8 +46,8 @@ namespace ParkingBon
             page.Height = hoogte;
             vertPositie = 96;
 
-            page.Children.Add(Regel(new BitmapImage(new Uri(@"images\parkingbon.jpg", UriKind.Relative))));
-            page.Children.Add(Regel("datum : " + DatumBon.SelectedDate.ToString()));
+            page.Children.Add(Foto(logoImage));
+            page.Children.Add(Regel("datum : " + DatumBon.SelectedDate.Value.ToLongDateString()));
             page.Children.Add(Regel("starttijd : " + AankomstLabelTijd.Content.ToString()));
             page.Children.Add(Regel("eindtijd : " + VertrekLabelTijd.Content.ToString()));
             page.Children.Add(Regel("bedrag betaald : " + TeBetalenLabel.Content.ToString()));
@@ -60,29 +60,21 @@ namespace ParkingBon
             var deRegel = new TextBlock();
             
             deRegel.Text = tekst;
+            deRegel.FontSize = 18;
             deRegel.Margin = new Thickness(300, vertPositie, 96, 96);
             vertPositie += 36;
 
             return deRegel;
         }
 
-        private TextBlock Regel(BitmapImage afbeelding)
+        private Image Foto(Image afbeelding)
         {
-            var deRegel = new TextBlock();
             var image = new Image();
 
-            image.Source = afbeelding;
-            image.Width = 120;
-            image.Height = 117;
-            image.Visibility = Visibility.Visible;
+            image.Source = afbeelding.Source;
+            image.Margin = new Thickness(96);
 
-            InlineUIContainer container = new InlineUIContainer(image);
-
-            deRegel.Inlines.Add(container);
-            deRegel.Margin = new Thickness(96, vertPositie, 96, 96);
-            vertPositie += 36;
-
-            return deRegel;
+            return image;
         }
 
         private void NewExecuted(object sender, ExecutedRoutedEventArgs e)
@@ -97,7 +89,7 @@ namespace ParkingBon
                 OpenFileDialog dlg = new OpenFileDialog();
                 dlg.FileName = "Document";
                 dlg.DefaultExt = ".bon";
-                dlg.Filter = "Bon documents |*.bon";
+                dlg.Filter = "Parkingbonnen |*.bon";
 
                 if (dlg.ShowDialog() == true)
                 {
@@ -128,7 +120,7 @@ namespace ParkingBon
 
                 dlg.FileName = DatumBon.SelectedDate.Value.Date.ToString("dd-MM-yyyy") + "om" + AankomstLabelTijd.Content.ToString().Replace(":", "-") + ".bon";
                 dlg.DefaultExt = ".bon";
-                dlg.Filter = "Bon documents |*.bon";
+                dlg.Filter = "Parkingbonnen |*.bon";
 
                 if (dlg.ShowDialog() == true)
                 {

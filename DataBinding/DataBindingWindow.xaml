@@ -1,0 +1,22 @@
+﻿<Window x:Class="DataBinding.DataBindingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="DataBindingWindow" Height="350" Width="525">
+    <Window.Resources>
+        <Style x:Key="baseControlStijl" TargetType="{x:Type Control}">
+            <Setter Property="BorderBrush" Value="Black"></Setter>
+            <Setter Property="BorderThickness" Value="2"></Setter>
+            <Setter Property="Margin" Value="10"></Setter>
+            <Setter Property="FontFamily" Value="Arial"></Setter>
+            <Setter Property="Height" Value="24"></Setter>
+        </Style>
+    </Window.Resources>
+    <StackPanel>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="10">
+            <TextBox Name="grootteTextBox" Style="{StaticResource baseControlStijl}" Width="30" HorizontalAlignment="Left" Text="{Binding ElementName=grootteSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Slider Name="grootteSlider" Style="{StaticResource baseControlStijl}" Width="200" Minimum="0" Maximum="96" IsSnapToTickEnabled="True" SmallChange="1" Value="12"></Slider>
+            <ComboBox Name="lettertypeComboBox" Width="180" Style="{StaticResource baseControlStijl}" ItemsSource="{Binding Source={x:Static Member=Fonts.SystemFontFamilies}}"></ComboBox>
+        </StackPanel>
+        <TextBlock Margin="10" FontSize="{Binding ElementName=grootteSlider, Path=Value}" Text="Tekst" FontFamily="{Binding ElementName=lettertypeComboBox, Path=SelectedValue}"></TextBlock>
+    </StackPanel>
+</Window>
