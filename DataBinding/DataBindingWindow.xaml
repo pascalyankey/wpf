@@ -1,6 +1,7 @@
 ﻿<Window x:Class="DataBinding.DataBindingWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:global="clr-namespace:System.Globalization;assembly=mscorlib"
         Title="DataBindingWindow" Height="350" Width="525">
     <Window.Resources>
         <Style x:Key="baseControlStijl" TargetType="{x:Type Control}">
@@ -15,8 +16,21 @@
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="10">
             <TextBox Name="grootteTextBox" Style="{StaticResource baseControlStijl}" Width="30" HorizontalAlignment="Left" Text="{Binding ElementName=grootteSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <Slider Name="grootteSlider" Style="{StaticResource baseControlStijl}" Width="200" Minimum="0" Maximum="96" IsSnapToTickEnabled="True" SmallChange="1" Value="12"></Slider>
-            <ComboBox Name="lettertypeComboBox" Width="180" Style="{StaticResource baseControlStijl}" ItemsSource="{Binding Source={x:Static Member=Fonts.SystemFontFamilies}}"></ComboBox>
+            <ComboBox Name="lettertypeComboBox" Width="180" Style="{StaticResource baseControlStijl}" DataContext="{x:Static Member=Fonts.SystemFontFamilies}" ItemsSource="{Binding}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock FontFamily="{Binding}" Text="{Binding}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
         </StackPanel>
         <TextBlock Margin="10" FontSize="{Binding ElementName=grootteSlider, Path=Value}" Text="Tekst" FontFamily="{Binding ElementName=lettertypeComboBox, Path=SelectedValue}"></TextBlock>
+        <StackPanel Name="veranderPanel" Orientation="Horizontal" Margin="10">
+            <TextBox Name="veranderTextBox" Width="100" Height="30" Text="{Binding Path=Naam}" Margin="10"></TextBox>
+            <Button Name="veranderButton" Content="verander" Margin="10" Click="VeranderButton_Click"></Button>
+            <Button Name="toonNaamButton" Margin="10" Content="toon naam" Click="ToonNaamButton_Click"></Button>
+            <TextBox Name="weddeTextBox" Margin="10" Width="75" Text="{Binding Path=Wedde, StringFormat='euro #,##0.00', ConverterCulture={x:Static global:CultureInfo.CurrentCulture}}"/>
+            <TextBox Name="datumTextBox" Margin="10" Width="130" Text="{Binding Path=InDienst, StringFormat=d, ConverterCulture={x:Static global:CultureInfo.CurrentCulture}}"/>
+        </StackPanel>
     </StackPanel>
 </Window>

@@ -25,6 +25,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KleurenKiezer", "KleurenKie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBinding", "DataBinding\DataBinding.csproj", "{FAF0FC13-BA04-46FF-9032-3BA8D5595488}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloemSamenstelling", "BloemSamenstelling\BloemSamenstelling.csproj", "{C72D990D-B370-4E8D-AC25-5CE380F48474}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegenboogDragDrop", "RegenboogDragDrop\RegenboogDragDrop.csproj", "{59CB2CC4-3C36-4484-8A5A-066452C9AFDF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +79,14 @@ Global
 		{FAF0FC13-BA04-46FF-9032-3BA8D5595488}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAF0FC13-BA04-46FF-9032-3BA8D5595488}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAF0FC13-BA04-46FF-9032-3BA8D5595488}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C72D990D-B370-4E8D-AC25-5CE380F48474}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C72D990D-B370-4E8D-AC25-5CE380F48474}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C72D990D-B370-4E8D-AC25-5CE380F48474}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C72D990D-B370-4E8D-AC25-5CE380F48474}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59CB2CC4-3C36-4484-8A5A-066452C9AFDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59CB2CC4-3C36-4484-8A5A-066452C9AFDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59CB2CC4-3C36-4484-8A5A-066452C9AFDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59CB2CC4-3C36-4484-8A5A-066452C9AFDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

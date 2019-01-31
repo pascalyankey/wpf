@@ -1,0 +1,36 @@
+﻿<Window x:Class="RegenboogDragDrop.WindowRegenboog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="WindowRegenboog" Height="350" Width="525">
+    <Window.Resources>
+        <Style TargetType="{x:Type Rectangle}">
+            <Setter Property="Height" Value="50"></Setter>
+            <Setter Property="Width" Value="50"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="Stroke" Value="Black"></Setter>
+            <Setter Property="StrokeThickness" Value="3"></Setter>
+        </Style>
+
+    </Window.Resources>
+        <StackPanel>
+        <StackPanel Margin="0,50" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Rectangle Fill="Yellow"></Rectangle>
+            <Rectangle Fill="Orange"></Rectangle>
+            <Rectangle Fill="Red"></Rectangle>
+            <Rectangle Fill="Blue"></Rectangle>
+            <Rectangle Fill="Green"></Rectangle>
+            <Rectangle Fill="Violet"></Rectangle>
+            <Rectangle Fill="Indigo"></Rectangle>
+        </StackPanel>
+        <StackPanel Name="DropZone" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Rectangle Name="dropRed" Fill="White"></Rectangle>
+            <Rectangle Name="dropOrange" Fill="White"></Rectangle>
+            <Rectangle Name="dropYellow" Fill="White"></Rectangle>
+            <Rectangle Name="dropGreen" Fill="White"></Rectangle>
+            <Rectangle Name="dropBlue" Fill="White"></Rectangle>
+            <Rectangle Name="dropIndigo" Fill="White"></Rectangle>
+            <Rectangle Name="dropViolet" Fill="White"></Rectangle>
+        </StackPanel>
+        <Button Name="ButtonCheck" Content="Check volgorde" Margin="5,50"></Button>
+    </StackPanel>
+</Window>
