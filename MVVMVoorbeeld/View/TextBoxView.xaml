@@ -1,0 +1,35 @@
+﻿<Window x:Class="MVVMVoorbeeld.View.TextBoxView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:MVVMVoorbeeld.ViewModel"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:gala="http://www.galasoft.ch/mvvmlight"
+        Title="TextBox met MVVM" Height="350" Width="300">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing" >
+            <gala:EventToCommand Command="{Binding ClosingCommand}" PassEventArgsToCommand="True" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Window.Resources>
+        <local:BooleanToFontWeight x:Key="LogischNaarFontDikte" />
+        <local:BooleanToFontStyle x:Key="LogischNaarFontStijl" />
+        <local:IntToBoolean x:Key="IntegerNaarLogisch" />
+    </Window.Resources>
+    <StackPanel Orientation="Horizontal">
+        <Border BorderThickness="3" BorderBrush="Black">
+        <TextBox Name="TekstTextBox" Width="150" AcceptsReturn="True" Margin="10" TextWrapping="Wrap"
+                FontWeight="{Binding Vet, Converter={StaticResource LogischNaarFontDikte}}"
+                FontStyle="{Binding Schuin, Converter={StaticResource LogischNaarFontStijl}}"
+                Text="{Binding Inhoud}">
+        </TextBox>
+        </Border>
+        <StackPanel HorizontalAlignment="Center" Width="100">
+            <ToggleButton Name="ButtonBold" Content="Bold" Margin="10" IsChecked="{Binding Vet}"></ToggleButton>
+            <ToggleButton Name="ButtonItalic" Content="Italic" Margin="10" IsChecked="{Binding Schuin}"></ToggleButton>
+            <Button Content="Nieuw" Margin="10,30,10,10" Command="{Binding NieuwCommand}"></Button>
+            <Button Content="Openen" Margin="10" Command="{Binding OpenenCommand}"></Button>
+            <Button Content="Opslaan" Margin="10" Command="{Binding OpslaanCommand}" IsEnabled="{Binding ElementName=TekstTextBox, Path=Text.Length, Converter={StaticResource IntegerNaarLogisch}}"></Button>
+            <Button Content="Afsluiten" Margin="10,30,10,10" Command="{Binding AfsluitenCommand}"></Button>
+        </StackPanel>
+    </StackPanel>
+</Window>
