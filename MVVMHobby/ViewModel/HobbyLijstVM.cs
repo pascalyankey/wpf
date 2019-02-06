@@ -8,6 +8,8 @@ using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
 using System.Windows.Media.Imaging;
 using System.Windows;
+using System.Windows.Input;
+using System.Windows.Controls;
 
 namespace MVVMHobby.ViewModel
 {
@@ -62,6 +64,32 @@ namespace MVVMHobby.ViewModel
         private void Verwijder(RoutedEventArgs e)
         {
             HobbyLijst.Remove(SelectedHobby);
+        }
+
+        View.ImageView groteView;
+        public RelayCommand<MouseEventArgs> MouseDownCommand
+        {
+            get { return new RelayCommand<MouseEventArgs>(MuisIn); }
+        }
+
+        private void MuisIn(MouseEventArgs e)
+        {
+            Image tg = (Image)e.OriginalSource;
+            groteView = new View.ImageView();
+            groteView.GroteImage.Source = tg.Source;
+            groteView.Show();
+        }
+
+        public RelayCommand<MouseEventArgs> MouseUpCommand
+        {
+            get { return new RelayCommand<MouseEventArgs>(MuisUit); }
+        }
+
+        private void MuisUit(MouseEventArgs e)
+        {
+            if (groteView != null)
+                groteView.Close();
+            groteView = null;
         }
     }
 }

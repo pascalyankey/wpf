@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVMVoorbeeld", "MVVMVoorbe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVMHobby", "MVVMHobby\MVVMHobby.csproj", "{3C7B7B41-503B-4D03-9F09-930A15B434AE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingBonMVVM", "ParkingBonMVVM\ParkingBonMVVM.csproj", "{6404216A-D3CB-4EB5-8191-6597C5D34D4A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +119,10 @@ Global
 		{3C7B7B41-503B-4D03-9F09-930A15B434AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C7B7B41-503B-4D03-9F09-930A15B434AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C7B7B41-503B-4D03-9F09-930A15B434AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6404216A-D3CB-4EB5-8191-6597C5D34D4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6404216A-D3CB-4EB5-8191-6597C5D34D4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6404216A-D3CB-4EB5-8191-6597C5D34D4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6404216A-D3CB-4EB5-8191-6597C5D34D4A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

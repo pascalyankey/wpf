@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3C7B7B41-503B-4D03-9F09-930A15B434AE}</ProjectGuid>
+    <ProjectGuid>{6404216A-D3CB-4EB5-8191-6597C5D34D4A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>MVVMHobby</RootNamespace>
-    <AssemblyName>MVVMHobby</AssemblyName>
+    <RootNamespace>ParkingBonMVVM</RootNamespace>
+    <AssemblyName>ParkingBonMVVM</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -49,6 +49,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Controls.Ribbon" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -70,24 +71,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\Hobby.cs" />
-    <Compile Include="ViewModel\HobbyLijstVM.cs" />
-    <Compile Include="ViewModel\HobbyVM.cs" />
-    <Compile Include="View\HobbyLijstView.xaml.cs" />
+    <Compile Include="Model\ParkingBon.cs" />
+    <Compile Include="ViewModel\ParkingBonVM.cs" />
+    <Compile Include="View\ParkingBonView.xaml.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\ImageView.xaml.cs">
-      <DependentUpon>ImageView.xaml</DependentUpon>
-    </Compile>
-    <Page Include="View\HobbyLijstView.xaml">
+    <Page Include="View\ParkingBonView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\ImageView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -118,15 +111,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\atletiek.jpg" />
-    <Resource Include="Images\basketbal.jpg" />
-    <Resource Include="Images\drum.jpg" />
-    <Resource Include="Images\gitaar.jpg" />
-    <Resource Include="Images\piano.jpg" />
-    <Resource Include="Images\tennis.jpg" />
-    <Resource Include="Images\trompet.jpg" />
-    <Resource Include="Images\turnen.jpg" />
-    <Resource Include="Images\voetbal.jpg" />
+    <Resource Include="View\images\Bestand.png" />
+    <Resource Include="View\images\close.jpg" />
+    <Resource Include="View\images\new.jpg" />
+    <Resource Include="View\images\open.jpg" />
+    <Resource Include="View\images\parkingbon.jpg" />
+    <Resource Include="View\images\print.jpg" />
+    <Resource Include="View\images\save.jpg" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

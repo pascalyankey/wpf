@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace MVVMHobby
+namespace ParkingBonMVVM
 {
     /// <summary>
     /// Interaction logic for App.xaml
@@ -16,10 +16,11 @@ namespace MVVMHobby
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            ViewModel.HobbyLijstVM vm = new ViewModel.HobbyLijstVM();
-            View.HobbyLijstView hobbyView = new View.HobbyLijstView();
-            hobbyView.DataContext = vm;
-            hobbyView.Show();
+            Model.ParkingBon parkingBon = new Model.ParkingBon();
+            ViewModel.ParkingBonVM vm = new ViewModel.ParkingBonVM(parkingBon);
+            View.ParkingBonView parkingBonView = new View.ParkingBonView();
+            parkingBonView.DataContext = vm;
+            parkingBonView.Show();
         }
     }
 }
