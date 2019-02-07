@@ -8,7 +8,7 @@ using System.Windows.Data;
 
 namespace MVVMVoorbeeld.ViewModel
 {
-    public class BooleanToFontWeight :IValueConverter
+    public class BooleanToFontWeight : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

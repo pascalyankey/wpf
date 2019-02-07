@@ -10,7 +10,8 @@ namespace ParkingBonMVVM.Model
     {
         public DateTime DatumBon { get; set; }
         public string Aankomsttijd { get; set; }
-        public double Bedrag { get; set; }
+        public string Bedrag { get; set; }
         public string Vertrektijd { get; set; }
+        public Boolean EnableOpslaan { get; set; }
     }
 }

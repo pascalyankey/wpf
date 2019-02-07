@@ -7,23 +7,21 @@
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing" >
             <gala:EventToCommand Command="{Binding ClosingCommand}" PassEventArgsToCommand="True" />
-            <gala:EventToCommand Command="{Binding ButtonMeerCommand}" PassEventArgsToCommand="True" />
-            <gala:EventToCommand Command="{Binding ButtonMinderCommand}" PassEventArgsToCommand="True" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <DockPanel LastChildFill="True">
         <Ribbon DockPanel.Dock="Top">
             <Ribbon.QuickAccessToolBar>
                 <RibbonQuickAccessToolBar Height="24" Name="Qat">
-                    <RibbonButton SmallImageSource="images\open.jpg" Command="Open" Label="Openen"></RibbonButton>
-                    <RibbonButton SmallImageSource="images\save.jpg" Command="Save" Label="Opslaan"></RibbonButton>
+                    <RibbonButton SmallImageSource="images\open.jpg" Command="{Binding OpenenCommand}" Label="Openen"></RibbonButton>
+                    <RibbonButton SmallImageSource="images\save.jpg" Command="{Binding OpslaanCommand}" Label="Opslaan" IsEnabled="{Binding EnableOpslaan}"></RibbonButton>
                 </RibbonQuickAccessToolBar>
             </Ribbon.QuickAccessToolBar>
             <Ribbon.ApplicationMenu>
                 <RibbonApplicationMenu SmallImageSource="images\Bestand.png" KeyTip="A">
-                    <RibbonApplicationMenuItem Header="Nieuw" Command="New" ImageSource="images\new.jpg" QuickAccessToolBarImageSource="images\new.jpg"></RibbonApplicationMenuItem>
-                    <RibbonApplicationMenuItem Header="Openen" Command="Open" ImageSource="images\open.jpg"></RibbonApplicationMenuItem>
-                    <RibbonApplicationMenuItem Header="Opslaan" Command="Save" ImageSource="images\save.jpg"></RibbonApplicationMenuItem>
+                    <RibbonApplicationMenuItem Header="Nieuw" Command="{Binding NieuwCommand}" ImageSource="images\new.jpg" QuickAccessToolBarImageSource="images\new.jpg"></RibbonApplicationMenuItem>
+                    <RibbonApplicationMenuItem Header="Openen" Command="{Binding OpenenCommand}" ImageSource="images\open.jpg"></RibbonApplicationMenuItem>
+                    <RibbonApplicationMenuItem Header="Opslaan" Command="{Binding OpslaanCommand}" ImageSource="images\save.jpg" IsEnabled="{Binding EnableOpslaan}"></RibbonApplicationMenuItem>
                     <RibbonSeparator></RibbonSeparator>
                     <RibbonApplicationMenu.FooterPaneContent>
                         <RibbonButton Command="{Binding AfsluitenCommand}" SmallImageSource="images\close.jpg" HorizontalAlignment="Right" Label="Afsluiten"></RibbonButton>
@@ -32,9 +30,9 @@
             </Ribbon.ApplicationMenu>
             <RibbonTab Header="Bestand" KeyTip="B">
                 <RibbonGroup>
-                    <RibbonMenuButton LargeImageSource="images\new.jpg" Label="Nieuw" KeyTip="N"></RibbonMenuButton>
-                    <RibbonMenuButton LargeImageSource="images\open.jpg" Label="Openen" KeyTip="O"></RibbonMenuButton>
-                    <RibbonMenuButton LargeImageSource="images\save.jpg" Label="Opslaan" KeyTip="S"></RibbonMenuButton>
+                    <RibbonButton Command="{Binding NieuwCommand}" LargeImageSource="images\new.jpg" Label="Nieuw" KeyTip="N"></RibbonButton>
+                    <RibbonButton Command="{Binding OpenenCommand}" LargeImageSource="images\open.jpg" Label="Openen" KeyTip="O"></RibbonButton>
+                    <RibbonButton Command="{Binding OpslaanCommand}" IsEnabled="{Binding EnableOpslaan}" LargeImageSource="images\save.jpg" Label="Opslaan" KeyTip="S"></RibbonButton>
                 </RibbonGroup>
             </RibbonTab>
         </Ribbon>
@@ -50,7 +48,7 @@
                 <ColumnDefinition Width="225"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Image Name="logoImage" Source="images\parkingbon.jpg" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,10,0" Width="105"></Image>
-            <TextBlock Text="1€ per half uur" FontWeight="Bold"></TextBlock>
+            <TextBlock Text="1€ per half uur tot 22.00u" FontWeight="Bold"></TextBlock>
             <DatePicker Name="DatumBon" Grid.Column="1" ToolTip="datum selecteren" SelectedDate="{Binding DatumBon}" SelectedDateFormat="Long" VerticalAlignment="Center" Margin="20,45,0,50" Height="24"></DatePicker>
             <Label Name="AankomstLabel" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">Aankomsttijd:</Label>
             <TextBlock Name="AankomstTextBlock" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Width="200" VerticalAlignment="Center" Text="{Binding Aankomsttijd}"></TextBlock>
